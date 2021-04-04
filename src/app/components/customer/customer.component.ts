@@ -8,7 +8,7 @@ import { CustomerService } from 'src/app/services/customer.service';
   styleUrls: ['./customer.component.css'],
 })
 export class CustomerComponent implements OnInit {
-  dataLoaded = true;
+  dataLoaded = false;
   customers: CustomerDetailDto[] = [];
 
   constructor(private custmerService: CustomerService) {}
