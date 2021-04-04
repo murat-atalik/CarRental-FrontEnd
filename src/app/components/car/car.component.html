@@ -1,0 +1,29 @@
+<div *ngIf="dataLoaded==false" class="d-flex justify-content-center">
+    <div class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
+    </div>
+</div>
+
+<table *ngIf="dataLoaded==true" class="table table-secondary table-hover">
+
+    <thead>
+        <tr>
+            <th>Araba Adı</th>
+            <th>Araba Markası</th>
+            <th>Araba Rengi</th>
+            <th>Model Yılı</th>
+            <th>Araba Günlük Fiyatı</th>
+            <th>Açıklama</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let carDetail of carsdetail">
+            <td>{{carDetail.carName}}</td>
+            <td>{{carDetail.brandName}}</td>
+            <td>{{carDetail.colorName}}</td>
+            <td>{{carDetail.modelYear}}</td>
+            <td>{{carDetail.dailyPrice}}</td>
+            <td>{{carDetail.description}}</td>
+        </tr>
+    </tbody>
+</table>
