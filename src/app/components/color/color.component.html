@@ -3,17 +3,11 @@
         <span class="visually-hidden">Loading...</span>
     </div>
 </div>
-<table *ngIf="dataLoaded==true" class="table table-dark table-hover">
-    <thead>
-        <tr>
-            <th>Renk</th>
-        </tr>
 
-    </thead>
-    <tbody>
-
-        <tr *ngFor="let color of colors">
-            <td>{{color.colorName}}</td>
-        </tr>
-    </tbody>
-</table>
+<ul *ngIf="dataLoaded==true" class="list-group bg-dark-gray">
+    <li (click)="unsetCurrentCarsColor()" routerLink="/cars" [class]="getAllCarsColorClass()">Filtreyi Kaldır</li>
+    <li (click)="setCurrentCarsColor(color)" routerLink="/cars/color/{{color.colorId}}" *ngFor="let color of colors"
+        [class]="getCurrentCarsColorClass(color)">
+        {{color.colorName}}
+    </li>
+</ul>

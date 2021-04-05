@@ -10,7 +10,8 @@ import { ColorService } from 'src/app/services/color.service';
 export class ColorComponent implements OnInit {
   colors: Color[] = [];
   dataLoaded = false;
-
+  currentColor: Color;
+  nullColor: Color;
   constructor(private colorService: ColorService) {}
 
   ngOnInit(): void {
@@ -22,5 +23,26 @@ export class ColorComponent implements OnInit {
       this.colors = response.data;
       this.dataLoaded = true;
     });
+  }
+  setCurrentCarsColor(color: Color) {
+    this.currentColor = color;
+  }
+  unsetCurrentCarsColor() {
+    this.currentColor = this.nullColor;
+  }
+
+  getCurrentCarsColorClass(color: Color) {
+    if (color == this.currentColor) {
+      return 'list-group-item list-group-item-action list-group-item-dark active';
+    } else {
+      return 'list-group-item list-group-item-action list-group-item-dark';
+    }
+  }
+  getAllCarsColorClass() {
+    if (!this.currentColor) {
+      return 'list-group-item list-group-item-action list-group-item-dark active';
+    } else {
+      return 'list-group-item list-group-item-action list-group-item-dark';
+    }
   }
 }

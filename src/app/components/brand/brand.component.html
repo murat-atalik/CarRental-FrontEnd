@@ -4,17 +4,10 @@
     </div>
 </div>
 
-<table *ngIf="dataLoaded==true" class="table table-dark table-hover">
-    <thead>
-        <tr>
-
-            <th>Marka</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let brand of brands">
-            <td>{{brand.brandName}}</td>
-
-        </tr>
-    </tbody>
-</table>
+<ul *ngIf="dataLoaded==true" class="list-group bg-dark-gray">
+    <li (click)="unsetCurrentCarsBrand()" routerLink="/cars" [class]="getAllCarsBrandClass()">Filtreyi Kaldır</li>
+    <li (click)="setCurrentCarsBrand(brand)" routerLink="/cars/brand/{{brand.brandId}}" *ngFor="let brand of brands"
+        [class]="getCurrentCarsBrandClass(brand)">
+        {{brand.brandName}}
+    </li>
+</ul>
