@@ -8,4 +8,5 @@ export interface CarDetailDto {
   dailyPrice: number;
   modelYear: number;
   description: string;
+  imagePath: string;
 }

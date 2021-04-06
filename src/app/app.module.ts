@@ -10,6 +10,9 @@ import { ColorComponent } from './components/color/color.component';
 import { BrandComponent } from './components/brand/brand.component';
 import { RentalComponent } from './components/rental/rental.component';
 import { CustomerComponent } from './components/customer/customer.component';
+import { CarDetailsComponent } from './components/car-details/car-details.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +23,9 @@ import { CustomerComponent } from './components/customer/customer.component';
     BrandComponent,
     RentalComponent,
     CustomerComponent,
+    CarDetailsComponent,
+    FooterComponent,
+    SidebarComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [],

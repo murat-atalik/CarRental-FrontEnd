@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Car } from 'src/app/models/car';
 import { CarDetailDto } from 'src/app/models/complex-types/carDetailDto';
 import { CarService } from 'src/app/services/car.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-car',
@@ -11,7 +12,12 @@ import { CarService } from 'src/app/services/car.service';
 })
 export class CarComponent implements OnInit {
   dataLoaded = false;
-  carsdetail: CarDetailDto[] = [];
+  carLoaded = false;
+  carsDetail: CarDetailDto[] = [];
+  currentCar: CarDetailDto;
+
+  imageUrl = environment.staticFilesUrl;
+
   constructor(
     private carService: CarService,
     private activatedRoute: ActivatedRoute
@@ -31,20 +37,34 @@ export class CarComponent implements OnInit {
 
   getCars() {
     this.carService.getCarsDetail().subscribe((response) => {
-      this.carsdetail = response.data;
+      this.carsDetail = response.data;
       this.dataLoaded = true;
     });
   }
   getCarsDetailByBrand(brandId: number) {
     this.carService.getCarsBrand(brandId).subscribe((response) => {
-      this.carsdetail = response.data;
+      this.carsDetail = response.data;
       this.dataLoaded = true;
     });
   }
   getCarsDetailByColor(colorId: number) {
     this.carService.getCarsColor(colorId).subscribe((response) => {
-      this.carsdetail = response.data;
+      this.carsDetail = response.data;
       this.dataLoaded = true;
     });
+  }
+  // getCarDetail(carId: number) {
+  //   this.carService.getCarDetail(carId).subscribe((response) => {
+  //     this.carsDetail = response.data;
+  //     this.dataLoaded = true;
+  //     console.log(carId);
+  //   });
+  // }
+  setCurrentCar(car: CarDetailDto) {
+    this.currentCar = car;
+    this.carLoaded = true;
+  }
+  getCurrentButtonClass() {
+    return '"btn btn-primary"';
   }
 }

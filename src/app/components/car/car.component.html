@@ -11,19 +11,24 @@
             <th>Araba Adı</th>
             <th>Araba Markası</th>
             <th>Araba Rengi</th>
-            <th>Model Yılı</th>
             <th>Araba Günlük Fiyatı</th>
-            <th>Açıklama</th>
+
         </tr>
     </thead>
-    <tbody>
-        <tr *ngFor="let carDetail of carsdetail">
-            <td>{{carDetail.carName}}</td>
-            <td>{{carDetail.brandName}}</td>
-            <td>{{carDetail.colorName}}</td>
-            <td>{{carDetail.modelYear}}</td>
-            <td>{{carDetail.dailyPrice}}</td>
-            <td>{{carDetail.description}}</td>
-        </tr>
-    </tbody>
+
+
+    <tr *ngFor="let carDetail of carsDetail">
+        <img src="{{imageUrl}}/{{carDetail.imagePath}}" alt="..." class="img-fluid img-thumbnai"
+            style="width: 200px;height: 150px;">
+        <td>{{carDetail.carName}}</td>
+        <td>{{carDetail.brandName}}</td>
+        <td>{{carDetail.colorName}}</td>
+        <td>{{carDetail.dailyPrice}}₺</td>
+        <button (click)="setCurrentCar(currentCar)" routerLink="cars/carDetail/{{carDetail.carId}}" type="button"
+            class="btn btn-dark">İncele
+        </button>
+    </tr>
+
 </table>
+
+<app-car-details *ngIf="carLoaded==true"></app-car-details>
