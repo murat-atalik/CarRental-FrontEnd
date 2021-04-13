@@ -6,7 +6,7 @@
 <div *ngIf="dataLoaded==true" class="container">
 
     <div class="row">
-        <div class="col-md-8">
+        <div class="container">
             <div id="carouselExampleControls" class="carousel slide border border-dark" data-bs-ride="carousel">
                 <div class="carousel-inner">
 
@@ -28,35 +28,35 @@
                     </button>
                 </div>
             </div>
-
+        </div>
+        <div>
             <table class="table">
                 <thead>
                     <tr>
-
-                        <th>Araba Id</th>
                         <th>Araba Adı</th>
                         <th>Marka</th>
                         <th>Renk</th>
                         <th>Model</th>
                         <th>Günlük Fiyatı</th>
                         <th>Açıklama</th>
+                        <th></th>
 
                     </tr>
                 </thead>
                 <tr>
-
-                    <td>{{ carDetails.carId }}</td>
                     <td>{{ carDetails.carName }}</td>
                     <td>{{ carDetails.brandName }}</td>
                     <td>{{ carDetails.colorName }}</td>
                     <td>{{ carDetails.modelYear }}</td>
                     <td>{{ carDetails.dailyPrice }}₺</td>
                     <td>{{ carDetails.description }}</td>
-                    <br>
-                    <button routerLink="/cars/" class="btn btn-primary" type="button" class="btn btn-dark">Ana
-                        Sayfa</button>
+
+                    <button routerLink="/cars/" class="btn btn-primary" type="button" class="btn btn-dark">Kirala
+                    </button>
+
+
                 </tr>
             </table>
-
-
         </div>
+    </div>
+</div>

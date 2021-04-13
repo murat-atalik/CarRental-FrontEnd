@@ -9,8 +9,20 @@ const routes: Routes = [
   { path: '', pathMatch: 'full', component: CarComponent },
   { path: 'cars', component: CarComponent },
   { path: 'cars/brand/:brandId', component: CarComponent },
-  { path: 'cars/color/:colorId', component: CarComponent },
+
+  {
+    path: 'cars/color/:colorId',
+    component: CarComponent,
+  },
   { path: 'cars/carDetail/:carId', component: CarDetailsComponent },
+  {
+    path: 'cars/brand/:brandId/cars/carDetail/:carId',
+    component: CarDetailsComponent,
+  },
+  {
+    path: 'cars/color/:colorId/cars/carDetail/:carId',
+    component: CarDetailsComponent,
+  },
   { path: 'cars/cars/carDetail/:carId', component: CarDetailsComponent },
   { path: 'rentals', component: RentalComponent },
   { path: 'customers', component: CustomerComponent },

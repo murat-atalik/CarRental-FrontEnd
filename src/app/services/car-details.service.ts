@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { CarImage } from '../models/carImages';
 import { CarDetailDto } from '../models/complex-types/carDetailDto';
 import { ListResponseModel } from '../models/ListResponseModel';
@@ -10,7 +11,7 @@ import { SingleResponseModel } from '../models/singleResponseModel';
   providedIn: 'root',
 })
 export class CarDetailsService {
-  apiUrl = 'https://localhost:44325/api/';
+  apiUrl = environment.apiUrl;
 
   constructor(private httpClient: HttpClient) {}
 
