@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { Car } from 'src/app/models/car';
 import { CarImage } from 'src/app/models/carImages';
 import { CarDetailDto } from 'src/app/models/complex-types/carDetailDto';
 import { CarDetailsService } from 'src/app/services/car-details.service';
 import { CarImageService } from 'src/app/services/car-image.service';
+import { RentalAddService } from 'src/app/services/rental-add.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -16,11 +18,16 @@ export class CarDetailsComponent implements OnInit {
   carImages: CarImage[] = [];
   carDetails: CarDetailDto;
   imageUrl = environment.staticFilesUrl;
+
   dataLoaded = false;
+  currentCars: CarDetailDto[];
+
   constructor(
     private carDetailsService: CarDetailsService,
     private activatedRoute: ActivatedRoute,
-    private getCarImages: CarImageService
+    private getCarImages: CarImageService,
+    private rentalAddService: RentalAddService,
+    private toastrService: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -42,5 +49,17 @@ export class CarDetailsComponent implements OnInit {
     this.carDetailsService.getImagesById(imageId).subscribe((response) => {
       this.carImages = response.data;
     });
+  }
+  setData(car: CarDetailDto) {
+    let item = this.rentalAddService
+      .list()
+      .find((c) => c.car.carId == car.carId);
+
+    if (!item) {
+      this.rentalAddService.addToCart(car);
+      this.toastrService.success('Araç sepete eklendi', car.carName);
+    } else {
+      this.toastrService.error('Bir araç bir kere kiralanabilir.');
+    }
   }
 }

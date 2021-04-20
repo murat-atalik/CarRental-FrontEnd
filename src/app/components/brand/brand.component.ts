@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Brand } from 'src/app/models/brand';
 import { BrandService } from 'src/app/services/brand.service';
 
@@ -8,10 +9,15 @@ import { BrandService } from 'src/app/services/brand.service';
   styleUrls: ['./brand.component.css'],
 })
 export class BrandComponent implements OnInit {
+  @Output() brandFilter = new EventEmitter<string>();
+
   brands: Brand[] = [];
   dataLoaded = false;
   currentBrand: Brand;
   nullBrand: Brand;
+  filterText = '';
+  selectedBrand: string;
+  null: any;
   constructor(private brandService: BrandService) {}
 
   ngOnInit(): void {
@@ -23,27 +29,9 @@ export class BrandComponent implements OnInit {
       this.brands = response.data;
       this.dataLoaded = true;
     });
+    console.log(this.brands);
   }
-  setCurrentCarsBrand(brand: Brand) {
-    this.currentBrand = brand;
-  }
-
-  unsetCurrentCarsBrand() {
-    this.currentBrand = this.nullBrand;
-  }
-
-  getCurrentCarsBrandClass(brand: Brand) {
-    if (brand == this.currentBrand) {
-      return 'list-group-item list-group-item-action list-group-item-dark active';
-    } else {
-      return 'list-group-item list-group-item-action list-group-item-dark';
-    }
-  }
-  getAllCarsBrandClass() {
-    if (!this.currentBrand) {
-      return 'list-group-item list-group-item-action list-group-item-dark active';
-    } else {
-      return 'list-group-item list-group-item-action list-group-item-dark';
-    }
+  setBrand(value: string) {
+    this.brandFilter.emit(value);
   }
 }

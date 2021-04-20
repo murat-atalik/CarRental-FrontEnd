@@ -1,13 +1,29 @@
-<div *ngIf="dataLoaded==false" class="d-flex justify-content-center">
-    <div class="spinner-border" role="status">
-        <span class="visually-hidden">Loading...</span>
+<div>
+    <h1>Marka</h1>
+    <input type="search" [(ngModel)]="filterText" class="form-control" id="filterText" placeholder="Marka giriniz.">
+
+    <select [(ngModel)]="selectedBrand" class="form-select mt-3" size="8" aria-label="size 8 select example">
+        <option *ngFor="let brand of brands | brandFilterPipe:filterText " value="{{brand.brandName}}">
+            {{brand.brandName}}
+        </option>
+        <option *ngFor="let brand of brands | brandFilterPipe:filterText" value="{{brand.brandName}}">
+            {{brand.brandName}}
+        </option>
+        <option *ngFor="let brand of brands | brandFilterPipe:filterText" value="{{brand.brandName}}">
+            {{brand.brandName}}
+        </option>
+        <option *ngFor="let brand of brands | brandFilterPipe:filterText" value="{{brand.brandName}}">
+            {{brand.brandName}}
+        </option>
+
+    </select>
+
+    <div class="btn-group mt-3 " role="group" aria-label="Basic example">
+        <button type="button" (click)="setBrand(selectedBrand)" class="btn btn-secondary">
+            Filtrele
+        </button>
+        <button type="button" (click)="setBrand(null)" class="btn btn-dark " routerLink="/cars">
+            Filtre Temizle
+        </button>
     </div>
 </div>
-
-<ul *ngIf="dataLoaded==true" class="list-group bg-dark-gray">
-    <li (click)="unsetCurrentCarsBrand()" routerLink="/cars" [class]="getAllCarsBrandClass()">Filtreyi Kaldır</li>
-    <li (click)="setCurrentCarsBrand(brand)" routerLink="/cars/brand/{{brand.brandId}}" *ngFor="let brand of brands"
-        [class]="getCurrentCarsBrandClass(brand)">
-        {{brand.brandName}}
-    </li>
-</ul>

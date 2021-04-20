@@ -4,10 +4,32 @@
     </div>
 </div>
 
-<ul *ngIf="dataLoaded==true" class="list-group bg-dark-gray">
-    <li (click)="unsetCurrentCarsColor()" routerLink="/cars" [class]="getAllCarsColorClass()">Filtreyi Kaldır</li>
-    <li (click)="setCurrentCarsColor(color)" routerLink="/cars/color/{{color.colorId}}" *ngFor="let color of colors"
-        [class]="getCurrentCarsColorClass(color)">
-        {{color.colorName}}
-    </li>
-</ul>
+<div>
+    <h1 class="text-dark">Renk</h1>
+    <input type="search" [(ngModel)]="filterText" class="form-control" id="filterText" placeholder="Renk giriniz.">
+
+    <select [(ngModel)]="selectedColor" class="form-select mt-3" size="8" aria-label="size 8 select example">
+        <option *ngFor="let color of colors | colorFilterPipe:filterText" value="{{color.colorName}}">
+            {{color.colorName}}
+        </option>
+        <option *ngFor="let color of colors | colorFilterPipe:filterText" value="{{color.colorName}}">
+            {{color.colorName}}
+        </option>
+        <option *ngFor="let color of colors | colorFilterPipe:filterText" value="{{color.colorName}}">
+            {{color.colorName}}
+        </option>
+        <option *ngFor="let color of colors | colorFilterPipe:filterText" value="{{color.colorName}}">
+            {{color.colorName}}
+        </option>
+    </select>
+
+    <div class="btn-group mt-3" role="group" aria-label="Basic example">
+        <button type="button" (click)="setColor(selectedColor)" class="btn btn-secondary">
+            Filtrele</button>
+        <button type="button" (click)="setColor(null)" class="btn btn-dark" routerLink="/cars">
+            Filtre Temizle
+        </button>
+    </div>
+
+
+</div>

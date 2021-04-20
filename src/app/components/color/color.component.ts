@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Color } from 'src/app/models/color';
 import { ColorService } from 'src/app/services/color.service';
 
@@ -8,14 +9,23 @@ import { ColorService } from 'src/app/services/color.service';
   styleUrls: ['./color.component.css'],
 })
 export class ColorComponent implements OnInit {
+  @Output() colorFilter = new EventEmitter<string>();
+
   colors: Color[] = [];
   dataLoaded = false;
   currentColor: Color;
   nullColor: Color;
+  filterText: '';
+  colorName = 'Tüm renkler';
+  selectedColor: string;
+  null: any;
   constructor(private colorService: ColorService) {}
 
   ngOnInit(): void {
     this.getColors();
+  }
+  submit() {
+    console.log('Form Submitted');
   }
 
   getColors() {
@@ -24,25 +34,7 @@ export class ColorComponent implements OnInit {
       this.dataLoaded = true;
     });
   }
-  setCurrentCarsColor(color: Color) {
-    this.currentColor = color;
-  }
-  unsetCurrentCarsColor() {
-    this.currentColor = this.nullColor;
-  }
-
-  getCurrentCarsColorClass(color: Color) {
-    if (color == this.currentColor) {
-      return 'list-group-item list-group-item-action list-group-item-dark active';
-    } else {
-      return 'list-group-item list-group-item-action list-group-item-dark';
-    }
-  }
-  getAllCarsColorClass() {
-    if (!this.currentColor) {
-      return 'list-group-item list-group-item-action list-group-item-dark active';
-    } else {
-      return 'list-group-item list-group-item-action list-group-item-dark';
-    }
+  setColor(value: string) {
+    this.colorFilter.emit(value);
   }
 }

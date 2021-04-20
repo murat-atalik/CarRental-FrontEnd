@@ -15,11 +15,6 @@ export class CarDetailsService {
 
   constructor(private httpClient: HttpClient) {}
 
-  // getCarDetails(carId: number): Observable<SingleResponseModel<CarDetailDto>> {
-  //   let newPath = this.apiUrl + 'getbyid?id=' + carId;
-  //   return this.httpClient.get<SingleResponseModel<CarDetailDto>>(newPath);
-  // }
-
   getImagesById(carId: number): Observable<ListResponseModel<CarImage>> {
     let newPath = this.apiUrl + 'carimages/getallcarimages?carId=' + carId;
     return this.httpClient.get<ListResponseModel<CarImage>>(newPath);
