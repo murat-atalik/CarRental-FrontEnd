@@ -27,6 +27,7 @@
     "jquerry": "*",
     "jquery": "^3.6.0",
     "ngx-datetime-picker": "^3.0.0",
+    "ngx-mask": "^11.1.5",
     "ngx-material-timepicker": "^5.5.3",
     "ngx-payment-card": "^1.0.1",
     "ngx-toastr": "^13.2.1",
