@@ -32,11 +32,14 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { CarFilterPipePipe } from './pipes/car-filter-pipe.pipe';
 import { ColorFilterPipePipe } from './pipes/color-filter-pipe.pipe';
 import { BrandFilterPipePipe } from './pipes/brand-filter-pipe.pipe';
+import { CarColorPipePipe } from './pipes/car-color-pipe.pipe';
+import { CarBrandPipePipe } from './pipes/car-brand-pipe.pipe';
 
 import { ToastrModule } from 'ngx-toastr';
 import { NgxPaymentCardModule } from 'ngx-payment-card';
-import { CarColorPipePipe } from './pipes/car-color-pipe.pipe';
-import { CarBrandPipePipe } from './pipes/car-brand-pipe.pipe';
+import { NgxMaskModule, IConfig } from 'ngx-mask';
+
+export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
 
 @NgModule({
   declarations: [
@@ -79,6 +82,7 @@ import { CarBrandPipePipe } from './pipes/car-brand-pipe.pipe';
     NgxMatNativeDateModule,
 
     NgxPaymentCardModule,
+    NgxMaskModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent],
