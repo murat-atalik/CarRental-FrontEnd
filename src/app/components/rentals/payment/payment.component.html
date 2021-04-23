@@ -123,62 +123,76 @@
                     <br />
 
                 </form>
-                <form [formGroup]="cardForm" (ngSubmit)="onFormSubmit(cardForm)">
-                    <article class="card">
-                        <div class="card-body p-5">
 
-                            <div>
+                <div class="content">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header">
 
-
-                                <div class="form-group">
-                                    <label for="username">Full name (on the card)</label>
-                                    <input formControlName="fullName" type="text" class="form-control" name="username"
-                                        placeholder="" required="">
-                                </div>
-
-
-                                <div class="form-group">
-                                    <label for="cardNumber">Card number</label>
-                                    <div class="input-group">
-                                        <input formControlName="cardNumber" class="form-control" type="string"
-                                            name="cardNumber" placeholder="1111 1111 1111 1111"
-                                            onkeypress="if(this.value.length>=16) return false">
-
-                                    </div>
-                                </div>
-
-
-                                <div class="row">
-                                    <div class="col-sm-8">
-                                        <div class="form-group">
-                                            <label><span class="hidden-xs">Expiration</span> </label>
-                                            <div class="input-group">
-                                                <input formControlName="validDate" type="month"
-                                                    class="  form-control calendar--year" placeholder="MM" name="">
-
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-sm-4">
-                                        <div class="form-group">
-                                            <label data-toggle="tooltip" title="">CVV <i
-                                                    class="fa fa-question-circle"></i></label>
-                                            <input formControlName="cvv" class="form-control" type="number"
-                                                placeholder="***" onkeypress="if(this.value.length>=4) return false"
-                                                required="">
-                                        </div>
-
-                                    </div>
-                                </div>
                             </div>
+                            <div class="card-body">
+                                <form [formGroup]="cardForm">
 
+                                    <div class="card-body p-5">
+
+                                        <div>
+
+
+                                            <div class="mb-3">
+                                                <label for="username">Full name (on the card)</label>
+                                                <div class="form-group">
+                                                    <input formControlName="fullName" type="text" class="form-control"
+                                                        name="username" placeholder="" required="">
+                                                </div>
+                                            </div>
+
+
+                                            <div class=" mb-3">
+                                                <label for="cardNumber">Card number</label>
+                                                <div class="form-group">
+                                                    <input formControlName="cardNumber" class="form-control"
+                                                        type="string" name="cardNumber"
+                                                        placeholder="1111 1111 1111 1111" mask="0000 0000 0000 0000">
+                                                </div>
+                                            </div>
+
+
+
+                                            <div class="col-sm-8 mb-3">
+
+                                                <label for="validDate"><span class="hidden-xs">Expiration</span>
+                                                </label>
+                                                <div class="form-group">
+                                                    <input formControlName="validDate" type="text"
+                                                        class="form-control calendar--year" mask="M0/00"
+                                                        placeholder="MM/YY" name="">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-4 mb-3">
+                                                <label data-toggle="tooltip" for="cvv" title="">CVV <i
+                                                        class="fa fa-question-circle"></i></label>
+                                                <input formControlName="cvv" id="cvv" class="form-control" type="number"
+                                                    placeholder="***" onkeypress="if(this.value.length>=4) return false"
+                                                    required="">
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+
+
+                                </form>
+
+                            </div>
+                            <div class="card-footer">
+                                <button class="w-100 btn btn-primary btn-lg" (click)="onFormSubmit(cardForm)">Ödeme
+                                    işlemini
+                                    tamamla</button>
+                            </div>
                         </div>
-                    </article>
-                    <hr class="my-4">
-                    <button class="w-100 btn btn-primary btn-lg" type="submit">Ödeme işlemini
-                        tamamla</button>
-                </form>
+                    </div>
+                </div>
 
             </div>
 

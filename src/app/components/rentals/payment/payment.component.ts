@@ -2,7 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { CartItem } from 'src/app/models/cartItem';
 
 import { RentalAddService } from 'src/app/services/rental-add.service';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validator,
+  Validators,
+} from '@angular/forms';
 import { PaymentService } from 'src/app/services/payment.service';
 import { Rental } from 'src/app/models/rental';
 import { ToastrService } from 'ngx-toastr';
@@ -17,13 +23,7 @@ import { Payment } from 'src/app/models/paymet';
   styleUrls: ['./payment.component.css'],
 })
 export class PaymentComponent implements OnInit {
-  cardForm = new FormGroup({
-    cardBalance: new FormControl(),
-    cardNumber: new FormControl(),
-    cvv: new FormControl(),
-    fullName: new FormControl(),
-    validDate: new FormControl(new Date()),
-  });
+  cardForm: FormGroup;
   CartItems: CartItem[];
 
   totalPrice: number = 0;
@@ -33,14 +33,11 @@ export class PaymentComponent implements OnInit {
   cvv: number;
   fullName: string = '';
 
-
-
   rentSuccess: boolean;
   rentMessage: string;
 
- 
-
   constructor(
+    private formBuilder: FormBuilder,
     private rentalAddService: RentalAddService,
     private paymentService: PaymentService,
     private toastrService: ToastrService
@@ -49,7 +46,7 @@ export class PaymentComponent implements OnInit {
   ngOnInit(): void {
     this.carList();
     this.CartItems = this.rentalAddService.list();
-    console.log(this.CartItems);
+    this.createPaymentForm();
   }
 
   carList() {
@@ -87,18 +84,31 @@ export class PaymentComponent implements OnInit {
       temp.push(pay);
     });
 
-    this.paymentService.pay(temp).subscribe((response) => {
-      this.rentSuccess = response.success;
-      this.rentMessage = response.message;
-      if (this.rentSuccess) {
-        this.toastrService.success(this.rentMessage);
-      } else {
-        this.toastrService.error(this.rentMessage);
+    this.paymentService.pay(temp).subscribe(
+      (response) => {
+        this.toastrService.error(response.message);
+      },
+      (responseError) => {
+        console.log(responseError.error);
+        this.toastrService.error(responseError.error.Message, 'Ödeme hatası');
       }
-    });
+    );
   }
 
+  createPaymentForm() {
+    this.cardForm = this.formBuilder.group({
+      cardBalance: [''],
+      cardNumber: ['', Validators.required],
+      cvv: ['', Validators.required],
+      fullName: ['', Validators.required],
+      validDate: ['', Validators.required],
+    });
+  }
   onFormSubmit(cardForm: FormGroup): void {
-    this.pay(cardForm);
+    if (this.cardForm.valid) {
+      this.pay(cardForm);
+    } else {
+      this.toastrService.error('Tüm alanları doldurunuz', 'Hata');
+    }
   }
 }
