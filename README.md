@@ -31,5 +31,5 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 * If you have followed all the procedures correctly.
   The car rental system will be opened successfully.
   
-# Lisans Bilgileri
-Bu projenin kaynak kodu GPL v3 lisansı üzerinde kullanım geçerliliği bulundurmaktadır. Daha detaylı bilgi için LICENSE dökümanını gözden geçirebilirsiniz.
+  # License Information
+The source code of this project is valid on use under GPL v3 license. For more detailed information, you can review the LICENSE document. 
