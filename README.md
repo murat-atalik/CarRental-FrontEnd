@@ -30,3 +30,6 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 * Then type ng serve --open
 * If you have followed all the procedures correctly.
   The car rental system will be opened successfully.
+  
+# Lisans Bilgileri
+Bu projenin kaynak kodu GPL v3 lisansı üzerinde kullanım geçerliliği bulundurmaktadır. Daha detaylı bilgi için LICENSE dökümanını gözden geçirebilirsiniz.
