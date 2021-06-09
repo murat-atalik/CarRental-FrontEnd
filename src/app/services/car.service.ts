@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { endpoints } from '../app.endpoints';
 import { CarDetailDto } from '../models/complex-types/carDetailDto';
 import { ListResponseModel } from '../models/ListResponseModel';
 
@@ -8,7 +9,7 @@ import { ListResponseModel } from '../models/ListResponseModel';
   providedIn: 'root',
 })
 export class CarService {
-  apiUrl = 'https://localhost:44325/api/';
+  apiUrl = endpoints.apiUrl;
   constructor(private httpClient: HttpClient) {}
 
   getCarsDetail(): Observable<ListResponseModel<CarDetailDto>> {

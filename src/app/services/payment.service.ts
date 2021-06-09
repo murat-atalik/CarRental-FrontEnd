@@ -1,10 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { environment } from 'src/environments/environment';
-import { CartItem } from '../models/cartItem';
+import { endpoints } from '../app.endpoints';
 import { ListResponseModel } from '../models/ListResponseModel';
-import { Payment } from '../models/paymet';
 import { Rental } from '../models/rental';
 import { ResponseModel } from '../models/responseModel';
 
@@ -12,7 +10,7 @@ import { ResponseModel } from '../models/responseModel';
   providedIn: 'root',
 })
 export class PaymentService {
-  apiUrl = environment.apiUrl;
+  apiUrl = endpoints.apiUrl;
   constructor(private httpClient: HttpClient) {}
 
   pay(payment: any): Observable<ResponseModel> {

@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { endpoints } from '../app.endpoints';
 import { RentalDetailDto } from '../models/complex-types/rentalDetailDto';
 
 import { ListResponseModel } from '../models/ListResponseModel';
@@ -9,10 +10,11 @@ import { ListResponseModel } from '../models/ListResponseModel';
   providedIn: 'root',
 })
 export class RentalService {
-  apiUrl = 'https://localhost:44325/api/rentals/getallrentaldetails';
+  apiUrl = endpoints.apiUrl;
   constructor(private httpClient: HttpClient) {}
 
   getRentalsDetail(): Observable<ListResponseModel<RentalDetailDto>> {
-    return this.httpClient.get<ListResponseModel<RentalDetailDto>>(this.apiUrl);
+    let newPath = this.apiUrl + 'rentals/getallrentaldetails';
+    return this.httpClient.get<ListResponseModel<RentalDetailDto>>(newPath);
   }
 }

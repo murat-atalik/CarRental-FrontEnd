@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { endpoints } from '../app.endpoints';
 import { CartItem } from '../models/cartItem';
 import { CartItems } from '../models/cartItems';
 import { CarDetailDto } from '../models/complex-types/carDetailDto';
@@ -11,7 +12,7 @@ import { RentalItems } from '../models/rentalItem';
   providedIn: 'root',
 })
 export class RentalAddService {
-  apiUrl = 'https://localhost:44325/api/rentals/getallrentaldetails';
+  apiUrl = endpoints.apiUrl;
   currentCar: CarDetailDto[];
   nullCar: CarDetailDto[];
   totalDate: number;

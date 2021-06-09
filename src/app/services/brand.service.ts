@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { environment } from 'src/environments/environment';
+import { endpoints } from '../app.endpoints';
 import { Brand } from '../models/brand';
 
 import { ListResponseModel } from '../models/ListResponseModel';
@@ -10,7 +10,7 @@ import { ListResponseModel } from '../models/ListResponseModel';
   providedIn: 'root',
 })
 export class BrandService {
-  apiUrl = environment.apiUrl;
+  apiUrl = endpoints.apiUrl;
 
   constructor(private httpClient: HttpClient) {}
 
