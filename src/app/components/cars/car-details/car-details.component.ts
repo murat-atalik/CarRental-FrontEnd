@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
+import { endpoints } from 'src/app/app.endpoints';
 import { Car } from 'src/app/models/car';
 import { CarImage } from 'src/app/models/carImages';
 import { CarDetailDto } from 'src/app/models/complex-types/carDetailDto';
@@ -17,7 +18,6 @@ import { environment } from 'src/environments/environment';
 export class CarDetailsComponent implements OnInit {
   carImages: CarImage[] = [];
   carDetails: CarDetailDto;
-  imageUrl = environment.staticFilesUrl;
 
   dataLoaded = false;
   currentCars: CarDetailDto[];

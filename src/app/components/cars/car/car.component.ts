@@ -24,8 +24,6 @@ export class CarComponent implements OnInit {
 
   colorFilter: string;
 
-  imageUrl = environment.staticFilesUrl;
-
   constructor(
     private carService: CarService,
     private activatedRoute: ActivatedRoute,
