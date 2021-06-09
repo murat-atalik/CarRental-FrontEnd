@@ -4,8 +4,6 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'https://localHost:44325/api/',
-  staticFilesUrl: 'https://localhost:44325/',
 };
 
 /*
