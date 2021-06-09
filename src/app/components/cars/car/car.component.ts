@@ -1,12 +1,10 @@
 import { Component, Injectable, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { endpoints } from 'src/app/app.endpoints';
 import { Car } from 'src/app/models/car';
 import { CarDetailDto } from 'src/app/models/complex-types/carDetailDto';
 import { BrandService } from 'src/app/services/brand.service';
 import { CarService } from 'src/app/services/car.service';
-import { environment } from 'src/environments/environment';
-
-import { BrandComponent } from '../../brand/brand.component';
 
 @Component({
   selector: 'app-car',
@@ -23,6 +21,8 @@ export class CarComponent implements OnInit {
   brandFilter: string;
 
   colorFilter: string;
+
+  imageUrl = endpoints.staticFilesUrl;
 
   constructor(
     private carService: CarService,

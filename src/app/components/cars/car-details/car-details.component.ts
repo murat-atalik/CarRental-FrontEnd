@@ -18,6 +18,7 @@ import { environment } from 'src/environments/environment';
 export class CarDetailsComponent implements OnInit {
   carImages: CarImage[] = [];
   carDetails: CarDetailDto;
+  imageUrl = endpoints.staticFilesUrl;
 
   dataLoaded = false;
   currentCars: CarDetailDto[];
